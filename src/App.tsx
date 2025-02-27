@@ -49,7 +49,7 @@ export function App() {
 
   return (
     <div className={"pages"}>
-      <img src="/reown.svg" alt="Reown" style={{ width: '150px', height: '150px' }} />
+      <img src={`${import.meta.env.BASE_URL}reown.svg`} alt="Reown" style={{ width: '150px', height: '150px' }} />
       <h1>AppKit Wagmi React dApp Example</h1>
       <WagmiProvider config={wagmiAdapter.wagmiConfig}>
         <QueryClientProvider client={queryClient}>
