@@ -11,6 +11,8 @@ import { projectId, metadata, networks, wagmiAdapter, customId } from './config'
 
 import "./App.css"
 
+import { BackButton } from './components/BackButton'
+
 const queryClient = new QueryClient()
 
 const generalConfig = {
@@ -49,6 +51,7 @@ export function App() {
 
   return (
     <div className={"pages"}>
+      <BackButton/>
       <img src={`${import.meta.env.BASE_URL}reown.svg`} alt="Reown" style={{ width: '150px', height: '150px' }} />
       <h1>AppKit Wagmi React dApp Example</h1>
       <WagmiProvider config={wagmiAdapter.wagmiConfig}>
