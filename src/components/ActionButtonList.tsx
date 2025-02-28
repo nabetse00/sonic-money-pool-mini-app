@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDisconnect, useAppKit, useAppKitNetwork, useAppKitAccount  } from '@reown/appkit/react'
 import { parseGwei, type Address } from 'viem'
 import { useEstimateGas, useSendTransaction, useSignMessage, useBalance } from 'wagmi'
@@ -29,12 +29,19 @@ export const ActionButtonList = ({ sendHash, sendSignMsg, sendBalance }: ActionB
       address: address as Address
     }); // Wagmi hook to get the balance
 
+    const [balance, setBalance ] = useState('')
     
     useEffect(() => {
         if (hash) {
           sendHash(hash);
         }
     }, [hash]);
+
+    useEffect(() => {
+        if (balance) {
+          sendBalance(balance)
+        }
+    }, [balance]);
 
     // function to send a tx
     const handleSendTx = () => {
@@ -57,8 +64,10 @@ export const ActionButtonList = ({ sendHash, sendSignMsg, sendBalance }: ActionB
 
     // function to get the balance
     const handleGetBalance = async () => {
-      const balance = await refetch()
-      sendBalance(balance?.data?.value.toString() + " " + balance?.data?.symbol.toString())
+      const balanceObj = await refetch()
+      // sendBalance(balanceObj?.data?.value.toString() + " " + balanceObj?.data?.symbol.toString())
+      setBalance(balanceObj?.data?.value.toString() + " " + balanceObj?.data?.symbol.toString())
+      
     }
 
     const handleDisconnect = async () => {

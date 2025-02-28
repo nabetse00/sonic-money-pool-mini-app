@@ -12,6 +12,8 @@ import { projectId, metadata, networks, wagmiAdapter, customId } from './config'
 import "./App.css"
 
 import { BackButton } from './components/BackButton'
+import { AppRoot } from '@telegram-apps/telegram-ui'
+import '@telegram-apps/telegram-ui/dist/styles.css';
 
 const queryClient = new QueryClient()
 
@@ -50,27 +52,32 @@ export function App() {
 
 
   return (
-    <div className={"pages"}>
-      <BackButton/>
-      <img src={`${import.meta.env.BASE_URL}reown.svg`} alt="Reown" style={{ width: '150px', height: '150px' }} />
-      <h1>AppKit Wagmi React dApp Example</h1>
-      <WagmiProvider config={wagmiAdapter.wagmiConfig}>
-        <QueryClientProvider client={queryClient}>
-          <appkit-button />
-          <ActionButtonList sendHash={receiveHash} sendSignMsg={receiveSignedMsg} sendBalance={receivebalance} />
-          <SmartContractActionButtonList />
-          <div className="advice">
-            {!customId ? <p>
-              This projectId only works on localhost.<br />
-              Go to <a href="https://cloud.reown.com" target="_blank" className="link-button" rel="Reown Cloud">Reown Cloud</a> to get your own.
-            </p>
-              : <p>Running your own project id </p>
-            }
+    <WagmiProvider config={wagmiAdapter.wagmiConfig}>
+      <QueryClientProvider client={queryClient}>
+        <AppRoot>
+
+          <div className={"pages"}>
+
+            <BackButton />
+
+            <img src={`${import.meta.env.BASE_URL}reown.svg`} alt="Reown" style={{ width: '150px', height: '150px' }} />
+            <h1>AppKit Wagmi React dApp Example</h1>
+            <appkit-button />
+            <ActionButtonList sendHash={receiveHash} sendSignMsg={receiveSignedMsg} sendBalance={receivebalance} />
+            <SmartContractActionButtonList />
+            <div className="advice">
+              {!customId ? <p>
+                This projectId only works on localhost.<br />
+                Go to <a href="https://cloud.reown.com" target="_blank" className="link-button" rel="Reown Cloud">Reown Cloud</a> to get your own.
+              </p>
+                : <p>Running your own project id </p>
+              }
+            </div>
+            <InfoList hash={transactionHash} signedMsg={signedMsg} balance={balance} />
           </div>
-          <InfoList hash={transactionHash} signedMsg={signedMsg} balance={balance} />
-        </QueryClientProvider>
-      </WagmiProvider>
-    </div>
+        </AppRoot>
+      </QueryClientProvider>
+    </WagmiProvider>
   )
 }
 

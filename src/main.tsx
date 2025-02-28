@@ -1,16 +1,16 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import App from './App'
-import './config/mockEnvs'
+import { init } from './init.ts';
+import '@telegram-apps/telegram-ui/dist/styles.css';
 
-import { init, backButton } from '@telegram-apps/sdk-react';
 try {
+  const debug = import.meta.env.DEV || import.meta.env.VITE_DEBUG
   // telegram init
-  init()
+  await init(debug)
 } catch (error) {
   console.error(`error in init is ${error}`)
 }
-backButton.mount()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

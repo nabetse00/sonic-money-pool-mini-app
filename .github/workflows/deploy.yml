@@ -29,6 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       VITE_PROJECT_ID: ${{ secrets.VITE_PROJECT_ID }}
+      VITE_DEBUG: ${{ vars.VITE_DEBUG }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
