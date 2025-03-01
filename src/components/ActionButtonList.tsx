@@ -3,6 +3,7 @@ import { useDisconnect, useAppKit, useAppKitNetwork, useAppKitAccount  } from '@
 import { parseGwei, type Address } from 'viem'
 import { useEstimateGas, useSendTransaction, useSignMessage, useBalance } from 'wagmi'
 import { networks } from '../config'
+import { TestSendDataButton } from './TestSendData';
 
 // test transaction
 const TEST_TX = {
@@ -87,7 +88,8 @@ export const ActionButtonList = ({ sendHash, sendSignMsg, sendBalance }: ActionB
         <button onClick={() => switchNetwork(networks[1]) }>Switch</button>
         <button onClick={handleSignMsg}>Sign msg</button>
         <button onClick={handleSendTx}>Send tx</button>
-        <button onClick={handleGetBalance}>Get Balance</button>  
+        <button onClick={handleGetBalance}>Get Balance</button>
+        <TestSendDataButton/> 
     </div>
     )
   )
