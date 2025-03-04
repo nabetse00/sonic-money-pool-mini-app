@@ -54,25 +54,17 @@ export function App() {
   return (
     <WagmiProvider config={wagmiAdapter.wagmiConfig}>
       <QueryClientProvider client={queryClient}>
-        <AppRoot>
+        <AppRoot >
 
           <div className={"pages"}>
 
             <BackButton />
 
-            <img src={`${import.meta.env.BASE_URL}reown.svg`} alt="Reown" style={{ width: '150px', height: '150px' }} />
-            <h1>AppKit Wagmi React dApp Example</h1>
+            <img src={`${import.meta.env.BASE_URL}logo.webp`} alt="Sonic Money Pool" style={{ width: '150px', height: '150px' }} />
+            <h1>Sonic Money Pool Mini App</h1>
             <appkit-button />
             <ActionButtonList sendHash={receiveHash} sendSignMsg={receiveSignedMsg} sendBalance={receivebalance} />
             <SmartContractActionButtonList />
-            <div className="advice">
-              {!customId ? <p>
-                This projectId only works on localhost.<br />
-                Go to <a href="https://cloud.reown.com" target="_blank" className="link-button" rel="Reown Cloud">Reown Cloud</a> to get your own.
-              </p>
-                : <p>Running your own project id </p>
-              }
-            </div>
             <InfoList hash={transactionHash} signedMsg={signedMsg} balance={balance} />
           </div>
         </AppRoot>
