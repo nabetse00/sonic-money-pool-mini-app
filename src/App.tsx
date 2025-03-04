@@ -7,7 +7,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ActionButtonList } from './components/ActionButtonList'
 import { SmartContractActionButtonList } from './components/SmartContractActionButtonList'
 import { InfoList } from './components/InfoList'
-import { projectId, metadata, networks, wagmiAdapter, customId } from './config'
+import { projectId, metadata, networks, wagmiAdapter } from './config'
 
 import "./App.css"
 
